@@ -18,7 +18,9 @@ boxes.forEach((box) => {
     box.addEventListener("click", () => {
         if (box.disabled) return;
         
-        box.innerText = turnO ? "O" : "X";
+        const mark = turnO ? "O" : "X";
+        box.innerText = mark;
+        box.classList.add(mark === "X" ? "x-mark" : "o-mark");
         box.disabled = true;
         turnO = !turnO;
         
@@ -34,6 +36,7 @@ const checkWinner = () => {
 
         if (pos1 !== "" && pos1 === pos2 && pos2 === pos3) {
             showWinner(pos1);
+            pattern.forEach(index => boxes[index].classList.add('winner'));
             disableBoxes();
             return true;
         }
@@ -59,6 +62,8 @@ resetButton.addEventListener("click", () => {
     boxes.forEach(box => {
         box.innerText = "";
         box.disabled = false;
+        box.classList.remove('winner', 'x-mark', 'o-mark');
     });
+    msgContainer.style.display = "none";
     turnO = true;
 });
