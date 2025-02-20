@@ -101,6 +101,43 @@ h1 {
   font-size: 10vmin;
 }
 
+.box span {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.box:is(.x, .o) span {
+  display: flex;
+}
+
+.box.x span::before,
+.box.x span::after {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 2.5vmin;
+  background-color: #ff0000;
+  transform: rotate(45deg);
+  border-radius: 1vmin;
+  z-index: 1;
+}
+.box.x span::after {
+  transform: rotate(-45deg);
+}
+
+.box.o span::after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  border: 2.5vmin solid #000dff;
+  border-radius: 100%;
+  z-index: 1;
+}
+
 .box:hover {
   background-color: #52d6f4;
   transform: scale(1.05);
