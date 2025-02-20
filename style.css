@@ -1,0 +1,193 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+}
+p {
+  color: #2d3436;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+  display: none;
+}
+h1 {
+  color: #2d3436;
+  text-decoration: underline;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 2;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.game {
+  width: 60vmin;
+  height: 60vmin;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5vmin;
+  padding: 1.5vmin;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: #2d3436;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9);
+  border: 1px solid #000;
+}
+
+.game::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    #ff0000 25%,
+    #00ff00 50%,
+    #0000ff 75%,
+    #ff0000 100%
+  );
+  animation: animateBorder 4s linear infinite;
+  z-index: -1;
+  transform-origin: center center;
+}
+
+.game::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 8px;
+  z-index: -1;
+}
+
+.box {
+  background-color: rgb(241, 213, 249);
+  border: none;
+  border-radius: 15px;
+  font-size: 1rem;
+  color: #a00852;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
+  border: 1px solid #000;
+  font-size: 2rem;
+}
+
+.box:hover {
+  background-color: #52d6f4;
+  transform: scale(1.05);
+}
+
+@keyframes animateBorder {
+  0% {
+    transform: rotate(0deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.2);
+  }
+}
+
+.glow-on-hover {
+  position: fixed;
+  bottom: 20px;
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  z-index: 1000;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9);
+}
+
+.glow-on-hover::before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #000;
+}
+
+.glow-on-hover:active::after {
+  background: transparent;
+}
+
+.glow-on-hover:hover::before {
+  opacity: 1;
+}
+
+.glow-on-hover::after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
